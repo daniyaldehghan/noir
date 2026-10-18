@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+:root {
+  --background: #101010;
+  --foreground: #f0ebe2;
+  --gold: #c5a46d;
+  --burgundy: #4a101b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--gold);
+  color: #101010;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.noir-serif {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.noir-hero {
+  background: linear-gradient(
+      90deg,
+      rgba(16, 16, 16, 0.98) 0%,
+      rgba(16, 16, 16, 0.82) 40%,
+      rgba(16, 16, 16, 0.12) 100%
+    ),
+    url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=2000&q=90")
+      center 45% / cover no-repeat;
+}
+
+.noir-product-image {
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.noir-product-card:hover .noir-product-image {
+  transform: scale(1.07);
+}
+
+.noir-link {
+  position: relative;
+}
+
+.noir-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 300ms ease;
+}
+
+.noir-link:hover::after {
+  width: 100%;
+}
+
+@keyframes noir-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.noir-reveal {
+  animation: noir-reveal 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.noir-delay-1 {
+  animation-delay: 150ms;
+}
+
+.noir-delay-2 {
+  animation-delay: 300ms;
+}
+
+.noir-delay-3 {
+  animation-delay: 450ms;
+}
+
+@media (max-width: 767px) {
+  .noir-hero {
+    background: linear-gradient(
+        0deg,
+        rgba(16, 16, 16, 0.98) 0%,
+        rgba(16, 16, 16, 0.65) 55%,
+        rgba(16, 16, 16, 0.25) 100%
+      ),
+      url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1000&q=85")
+        center / cover no-repeat;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.noir-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.noir-marquee-track {
+  width: max-content;
+  animation: noir-marquee-scroll 88s linear infinite;
+  will-change: transform;
+}
+
+/* توقف هنگام قرار گرفتن موس روی اسلایدر */
+.noir-marquee:hover .noir-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes noir-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* احترام به تنظیم کاهش حرکت سیستم */
+@media (prefers-reduced-motion: reduce) {
+  .noir-marquee-track {
+    animation: none;
+  }
+}
