@@ -15,6 +15,7 @@ import {
   ShoppingBag,
   TriangleAlert,
 } from "lucide-react";
+import LogoutButton from "../module/LogoutButton";
 
 const money = (value = 0) =>
   new Intl.NumberFormat("en-US", {
@@ -163,6 +164,7 @@ export default function AdminDashboard() {
             >
               Edit Perfumes
             </Link>
+            <LogoutButton />
           </div>
         </header>
 
