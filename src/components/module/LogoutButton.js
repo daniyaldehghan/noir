@@ -3,17 +3,19 @@
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 import { LogOut, LoaderCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   async function handleLogout() {
     setLoading(true);
 
     try {
       await signOut({
-        callbackUrl: "/",
+        redirect: false,
       });
+      router.refresh();
     } catch (error) {
       console.error("Logout error:", error);
       setLoading(false);
